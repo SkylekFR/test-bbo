@@ -22,7 +22,9 @@
 <section role="main">
     <span id="test">test</span>
     <script id="test1" type="text/x-handlebars-template">
-        <p>{{firstname}} {{lastname}}</p>
+        <p>{{#each users}}
+            {{lastname}}
+            {{/each}}</p>
     </script>
 </section>
 
@@ -36,8 +38,9 @@
             $.get('getUser.php', function (data, status) {
                 var html = $('#test1').html();
                 var test = Handlebars.compile(html);
+
                 $('#test').html(test(data));
-                console.log(data);
+                console.log(test(data));
             });
         })
     });
