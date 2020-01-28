@@ -20,17 +20,12 @@
 
 <body>
 <section role="main">
-    <span id="test">test</span>
-    <script id="test1" type="text/x-handlebars-template">
-        <p>{{#each users}}
-                Firstname: {{this.firstname}} </br>
-                Lastname: {{this.lastname}}</br>
-                 Age: {{this.age}}</br>
-                 Address:  {{this.address}}</br>
-            ----------------------------------------------------------------- </br>
-            {{/each}}
-            </p>
-    </script>
+    <div id ="1" class="container">
+
+    </div>
+        <button class="btn btn-primary">Ajouter un user</button>
+
+
 </section>
 
 
@@ -39,17 +34,25 @@
 
 <script>
     $(document).ready(function (event) {
-        $('#test').click(function () {
-            $.get('getUser.php', function (data, status) {
-                var html = $('#test1').html();
-                var test = Handlebars.compile(html);
-                const u = JSON.parse(data);
 
-                $('#test').html(test(u));
-                console.log((u.users[1].firstname));
+        $.get('getUser.php', function (data, status) {
+            var myTemplate = ' <div class="row">\n' +
+                '            {{#each .}}\n' +
+                '            <ul class="col-md-6">\n' +
+                '                <li> Firstname: {{this.firstname}}</li>\n' +
+                '                <li> Lastname: {{this.lastname}}</li>\n' +
+                '                <li> Age: {{this.age}}</li>\n' +
+                '                <li> Address: {{this.address}}</li>\n' +
+                '            </ul>\n' +
+                '            {{/each}}\n' +
+                '        </div>'
+            var compiledTemplate = Handlebars.compile(myTemplate);
 
-            });
-        })
+            const u = JSON.parse(data);
+            console.log('test');
+            $('#1').html(compiledTemplate(u));
+        });
+
     });
 
 </script>
