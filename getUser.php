@@ -4,10 +4,20 @@ $pdo = new PDO('sqlite:bbo_db.db');
 $statement = $pdo->prepare('SELECT * FROM user');
 $statement->execute();
 $result = $statement->fetchAll(2);
-
+echo "users: [";
 for($i = 0; $i < 7; $i++){
-    echo $result[$i]['lastname'];
-    echo $result[$i]['firstname'];
-    echo $result[$i]['age'];
-    echo $result[$i]['address'];
-}
+
+    echo "{";
+    echo 'lastname:"' . $result[$i]['lastname'] .'",';
+    echo  'firstname:"' .$result[$i]['firstname'] . '",';
+    echo  'age:' .$result[$i]['age'] . ',';
+    echo 'address:"' . $result[$i]['address'] . '"';
+    echo "}";
+    if($i != 6){
+        echo ',';
+    }
+
+
+
+}    echo "]";
+

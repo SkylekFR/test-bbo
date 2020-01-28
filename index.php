@@ -35,8 +35,8 @@
         $('#test').click(function () {
             $.get('getUser.php', function (data, status) {
                 var html = $('#test1').html();
-                Handlebars.compile(html);
-
+                var test = Handlebars.compile(html);
+                $('#test').html(test(data));
                 console.log(data);
             });
         })
