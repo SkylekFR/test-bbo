@@ -23,8 +23,13 @@
     <span id="test">test</span>
     <script id="test1" type="text/x-handlebars-template">
         <p>{{#each users}}
-            {{lastname}}
-            {{/each}}</p>
+                Firstname: {{this.firstname}} </br>
+                Lastname: {{this.lastname}}</br>
+                 Age: {{this.age}}</br>
+                 Address:  {{this.address}}</br>
+            ----------------------------------------------------------------- </br>
+            {{/each}}
+            </p>
     </script>
 </section>
 
@@ -38,9 +43,11 @@
             $.get('getUser.php', function (data, status) {
                 var html = $('#test1').html();
                 var test = Handlebars.compile(html);
+                const u = JSON.parse(data);
 
-                $('#test').html(test(data));
-                console.log(test(data));
+                $('#test').html(test(u));
+                console.log((u.users[1].firstname));
+
             });
         })
     });
