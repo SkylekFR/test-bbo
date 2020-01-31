@@ -78,7 +78,7 @@
             var compilerFunction = Handlebars.compile(myTemplate);
 
             const jsonData = JSON.parse(data);
-            console.log('test');
+
             $('#div-to-compile').html(compilerFunction(jsonData));
         });
 
